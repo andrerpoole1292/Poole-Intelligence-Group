@@ -1,0 +1,242 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
+import { useState } from "react";
+
+const submitContact = createServerFn({ method: "POST" })
+  .validator((data: unknown) => {
+    const { name, email, company, service, message } =
+      data as Record<string, string>;
+    if (!name?.trim() || !email?.trim() || !message?.trim()) {
+      throw new Error("Name, email, and message are required");
+    }
+    return {
+      name: name.trim(),
+      email: email.trim(),
+      company: company?.trim() || "",
+      service: service?.trim() || "",
+      message: message.trim(),
+    };
+  })
+  .handler(async ({ data }) => {
+    const timestamp = new Date().toISOString();
+    const logEntry = `[${timestamp}] INQUIRY from ${data.name} (${data.email})${data.company ? ` — ${data.company}` : ""}${data.service ? ` | Service: ${data.service}` : ""}\nMessage: ${data.message}\n---\n`;
+    try {
+      const { appendFile, mkdir } = await import("node:fs/promises");
+      await mkdir(".data", { recursive: true });
+      await appendFile(".data/inquiries.log", logEntry, "utf8");
+    } catch (err) {
+      console.log("Contact form submission:", logEntry);
+    }
+    await new Promise((r) => setTimeout(r, 500));
+    return {
+      success: true,
+      message: `Thanks ${data.name}! We've received your inquiry and will get back to you within 1 business day.`,
+    };
+  });
+
+export const Route = createFileRoute("/contact")({
+  head: () => ({
+    meta: [
+      { title: "Contact — Poole Intelligence Group | AI Consulting for SMBs" },
+      { name: "description", content: "Get in touch with Poole Intelligence Group. Based in Charlotte, NC, serving clients nationwide. Schedule a free discovery call." },
+      { name: "keywords", content: "contact AI consultant, Charlotte AI consulting, SMB AI solutions, discovery call, AI strategy consultation" },
+    ],
+  }),
+  component: Contact,
+});
+
+const serviceOptions = [
+  { value: "", label: "Select a service..." },
+  { value: "consulting", label: "AI Strategy & Consulting" },
+  { value: "training", label: "Training & Enablement" },
+  { value: "managed", label: "Managed AI Solutions" },
+  { value: "other", label: "Other / Not sure" },
+];
+
+function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    service: "",
+    message: "",
+  });
+  const [status, setStatus] = useState<
+    | { type: "idle" }
+    | { type: "submitting" }
+    | { type: "success"; message: string }
+    | { type: "error"; message: string }
+  >({ type: "idle" });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus({ type: "submitting" });
+    try {
+      const result = await submitContact({ data: formData });
+      setStatus({ type: "success", message: result.message });
+      setFormData({ name: "", email: "", company: "", service: "", message: "" });
+    } catch (err) {
+      setStatus({
+        type: "error",
+        message: err instanceof Error ? err.message : "Something went wrong. Please try again.",
+      });
+    }
+  };
+
+  return (
+    <div>
+      <section className="bg-gradient-to-b from-white via-[#F5F7FA] to-white pt-32 pb-20 dark:from-gray-950 dark:via-[#0A1628]/20 dark:to-gray-950">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <span className="mb-4 inline-block rounded-full border border-[#C0C0C0] bg-[#F5F7FA] px-3 py-1 text-xs font-semibold text-[#1B2A4A] dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
+            Get in Touch
+          </span>
+          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+            Let's Start a{" "}
+            <span className="bg-gradient-to-r from-[#1B2A4A] to-[#3A5A8C] bg-clip-text text-transparent dark:from-[#6B8DBF] dark:to-[#3A5A8C]">
+              Conversation
+            </span>
+          </h1>
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+            Tell us about your AI goals and challenges. We'll respond within one
+            business day with an honest assessment and next steps.
+          </p>
+        </div>
+      </section>
+
+      <section className="bg-white pb-24 dark:bg-gray-950">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid gap-12 lg:grid-cols-5">
+            <div className="lg:col-span-3">
+              <div className="rounded-2xl border border-[#E8E8E8] bg-[#F5F7FA] p-8 shadow-sm dark:border-gray-800 dark:bg-gray-900 sm:p-12">
+                {status.type === "success" ? (
+                  <div className="flex flex-col items-center py-12 text-center">
+                    <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-3xl dark:bg-green-900/30">
+                      &#10003;
+                    </div>
+                    <h3 className="text-xl font-bold text-[#1B2A4A] dark:text-gray-100">Message Sent!</h3>
+                    <p className="mt-3 text-gray-600 dark:text-gray-400">{status.message}</p>
+                    <button
+                      onClick={() => setStatus({ type: "idle" })}
+                      className="mt-8 rounded-lg border border-[#C0C0C0] bg-white px-6 py-3 text-sm font-semibold text-[#1B2A4A] transition hover:bg-[#F5F7FA] dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:hover:bg-gray-800"
+                    >
+                      Send Another Message
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid gap-6 sm:grid-cols-2">
+                      <div>
+                        <label htmlFor="name" className="mb-2 block text-sm font-medium text-[#1B2A4A] dark:text-gray-100">
+                          Full name <span className="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="name" name="name" required value={formData.name} onChange={handleChange}
+                          placeholder="Jane Smith"
+                          className="w-full rounded-lg border border-[#C0C0C0] bg-white px-4 py-3 text-sm text-gray-900 placeholder-gray-400 transition focus:border-[#1B2A4A] focus:outline-none focus:ring-2 focus:ring-[#1B2A4A]/20 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:border-[#6B8DBF]" />
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="mb-2 block text-sm font-medium text-[#1B2A4A] dark:text-gray-100">
+                          Email address <span className="text-red-500">*</span>
+                        </label>
+                        <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange}
+                          placeholder="jane@company.com"
+                          className="w-full rounded-lg border border-[#C0C0C0] bg-white px-4 py-3 text-sm text-gray-900 placeholder-gray-400 transition focus:border-[#1B2A4A] focus:outline-none focus:ring-2 focus:ring-[#1B2A4A]/20 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:border-[#6B8DBF]" />
+                      </div>
+                    </div>
+                    <div className="grid gap-6 sm:grid-cols-2">
+                      <div>
+                        <label htmlFor="company" className="mb-2 block text-sm font-medium text-[#1B2A4A] dark:text-gray-100">
+                          Company
+                        </label>
+                        <input type="text" id="company" name="company" value={formData.company} onChange={handleChange}
+                          placeholder="Acme Corp"
+                          className="w-full rounded-lg border border-[#C0C0C0] bg-white px-4 py-3 text-sm text-gray-900 placeholder-gray-400 transition focus:border-[#1B2A4A] focus:outline-none focus:ring-2 focus:ring-[#1B2A4A]/20 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:border-[#6B8DBF]" />
+                      </div>
+                      <div>
+                        <label htmlFor="service" className="mb-2 block text-sm font-medium text-[#1B2A4A] dark:text-gray-100">
+                          Service interest
+                        </label>
+                        <select id="service" name="service" value={formData.service} onChange={handleChange}
+                          className="w-full rounded-lg border border-[#C0C0C0] bg-white px-4 py-3 text-sm transition focus:border-[#1B2A4A] focus:outline-none focus:ring-2 focus:ring-[#1B2A4A]/20 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:focus:border-[#6B8DBF]">
+                          {serviceOptions.map((opt) => (
+                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                    <div>
+                      <label htmlFor="message" className="mb-2 block text-sm font-medium text-[#1B2A4A] dark:text-gray-100">
+                        Message <span className="text-red-500">*</span>
+                      </label>
+                      <textarea id="message" name="message" required rows={5} value={formData.message} onChange={handleChange}
+                        placeholder="Tell us about your AI goals, challenges, or any questions you have..."
+                        className="w-full rounded-lg border border-[#C0C0C0] bg-white px-4 py-3 text-sm text-gray-900 placeholder-gray-400 transition focus:border-[#1B2A4A] focus:outline-none focus:ring-2 focus:ring-[#1B2A4A]/20 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:border-[#6B8DBF]" />
+                    </div>
+                    {status.type === "error" && (
+                      <div className="rounded-lg bg-red-50 p-4 text-sm text-red-700 dark:bg-red-950/50 dark:text-red-400">
+                        {status.message}
+                      </div>
+                    )}
+                    <button type="submit" disabled={status.type === "submitting"}
+                      className="w-full rounded-xl bg-[#1B2A4A] px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-[#1B2A4A]/25 transition hover:bg-[#2A3A5A] disabled:cursor-not-allowed disabled:opacity-60">
+                      {status.type === "submitting" ? "Sending..." : "Send Message"}
+                    </button>
+                    <p className="text-center text-xs text-gray-400 dark:text-gray-600">
+                      We respect your privacy. No spam, no sharing your data.
+                    </p>
+                  </form>
+                )}
+              </div>
+            </div>
+
+            <div className="lg:col-span-2">
+              <div className="rounded-2xl border border-[#E8E8E8] bg-white p-8 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+                <h3 className="text-lg font-bold text-[#1B2A4A] dark:text-gray-100">Here's what you can expect:</h3>
+                <ol className="mt-6 space-y-6">
+                  {[
+                    ["We read your message carefully", "Within 1 business day, a member of our team reviews what you've shared."],
+                    ["We schedule a 30-minute discovery call", "No pitch, no pressure. Just a conversation to understand your situation."],
+                    ["We share a candid assessment", "If we think we can help, we'll tell you how. If we're not the right fit, we'll tell you that too."],
+                    ["You decide what's next", "Whether that's a workshop, a proposal, or just walking away with a clearer picture. No commitment, no hard sell."],
+                  ].map(([title, desc], i) => (
+                    <li key={i} className="flex gap-4">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#F0F2F5] text-xs font-bold text-[#1B2A4A] dark:bg-gray-800 dark:text-[#6B8DBF]">{i + 1}</span>
+                      <div>
+                        <p className="text-sm font-semibold text-[#1B2A4A] dark:text-gray-100">{title}</p>
+                        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{desc}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              <div className="mt-6 rounded-2xl border border-[#E8E8E8] bg-[#F5F7FA] p-8 dark:border-gray-800 dark:bg-gray-900">
+                <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[#1B2A4A] dark:text-gray-100">
+                  Prefer to reach out directly?
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Drop us a line at{" "}
+                  <a href="mailto:hello@pooleintelligencegroup.com" className="font-medium text-[#1B2A4A] underline hover:text-[#3A5A8C] dark:text-[#6B8DBF] dark:hover:text-[#8BAED4]">
+                    hello@pooleintelligencegroup.com
+                  </a>
+                </p>
+                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                  Or follow us on{" "}
+                  <a href="#" className="font-medium text-[#1B2A4A] underline hover:text-[#3A5A8C] dark:text-[#6B8DBF] dark:hover:text-[#8BAED4]">
+                    LinkedIn
+                  </a>{" "}
+                  for practical AI insights and case studies.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
