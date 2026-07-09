@@ -1,12 +1,7 @@
-# Allow all crawlers
 User-agent: *
 Allow: /
-
-# Sitemap
-Sitemap: https://3f53ed6abcc7422df1f19f823c7a0cb5.ctonew.app/sitemap.xml
-
-# Disallow admin area
 Disallow: /admin/
 
-# Crawl delay for polite crawling
+Sitemap: https://pooleintelligencegroup.com/sitemap.xml
+
 Crawl-delay: 10
