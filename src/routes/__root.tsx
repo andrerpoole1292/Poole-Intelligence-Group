@@ -158,6 +158,7 @@ function Nav() {
     { to: "/services", label: "Services" },
     { to: "/how-it-works", label: "How It Works" },
     { to: "/pricing", label: "Pricing" },
+    { to: "/founder", label: "Meet the Founder" },
     { to: "/resources", label: "Resources" },
     { to: "/contact", label: "Contact" },
   ];

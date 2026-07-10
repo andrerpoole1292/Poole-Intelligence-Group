@@ -1,26 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 
-// Server function to save lead emails
-const saveLeadEmail = createServerFn({ method: "POST" })
-  .validator((data: unknown) => {
-    const { email, score, bucket } = data as Record<string, string>;
-    if (!email?.trim()) throw new Error("Email is required");
-    return { email: email.trim(), score: score || "", bucket: bucket || "" };
-  })
-  .handler(async ({ data }) => {
-    const timestamp = new Date().toISOString();
-    const logEntry = `[${timestamp}] LEAD from ${data.email} | Score: ${data.score} | Bucket: ${data.bucket}\n---\n`;
-    try {
-      const { appendFile, mkdir } = await import("node:fs/promises");
-      await mkdir(".data", { recursive: true });
-      await appendFile(".data/leads.log", logEntry, "utf8");
-    } catch (err) {
-      console.log("Lead capture:", logEntry);
-    }
-    return { success: true };
+// Client-side save function
+async function saveLeadEmail(data: { email: string; score?: string; bucket?: string }) {
+  const res = await fetch("/api/assessment", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
   });
+  if (!res.ok) throw new Error("Failed to save email");
+  return res.json();
+}
 
 export const Route = createFileRoute("/assessment")({
   component: Assessment,

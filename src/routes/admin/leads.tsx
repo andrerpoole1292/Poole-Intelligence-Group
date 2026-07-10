@@ -1,18 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
 import { useState, useEffect } from "react";
 
-// ── Server: Fetch chatbot leads from team-db ──
-const getLedgerLeads = createServerFn({ method: "GET" }).handler(async () => {
-  const out = await $`team-db "SELECT id, name, email, company, phone, interest, source, created_at FROM leads ORDER BY created_at DESC"`.text();
-  return JSON.parse(out);
-});
-
-// ── Server: Fetch CRM leads too ──
-const getCrmLeads = createServerFn({ method: "GET" }).handler(async () => {
-  const out = await $`team-db "SELECT id, name, email, company, phone, source, status, created_at FROM crm_leads ORDER BY created_at DESC"`.text();
-  return JSON.parse(out);
-});
+async function fetchLeads() {
+  try {
+    const res = await fetch("/api/leads");
+    if (!res.ok) return [];
+    return res.json();
+  } catch {
+    return [];
+  }
+}
 
 // ── Auth (simple client-side gate) ──
 const ADMIN_USER = "admin";

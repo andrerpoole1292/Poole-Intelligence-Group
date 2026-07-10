@@ -1,10 +1,9 @@
-import { createServerFn } from "@tanstack/react-start";
 import { findBestAnswer, knowledgeBase } from "./knowledge-base";
 
 // ── Configuration ──
 
 const GRAVITY_API_URL = "https://api.gravityengine.ai/v1";
-const GRAVITY_API_KEY = process.env.GRAVITY_API_KEY || "";
+const GRAVITY_API_KEY = "";
 const USE_API = GRAVITY_API_KEY.length > 0;
 
 // ── Suggested starter questions ──
@@ -75,56 +74,50 @@ async function callGravityAPI(messages: { role: string; content: string }[]): Pr
   return data.choices[0]?.message?.content || "I'm sorry, I couldn't generate a response.";
 }
 
-// ── Server function ──
+// ── Chat response function ──
 
-export const getChatResponse = createServerFn({ method: "GET" })
-  .validator((data: { message: string }) => {
-    if (!data.message || typeof data.message !== "string") {
-      throw new Error("Message is required");
-    }
-    return { message: data.message.trim().slice(0, 500) };
-  })
-  .handler(async ({ data }) => {
-    if (USE_API) {
-      // ── API mode ──
-      await new Promise((r) => setTimeout(r, 300 + Math.random() * 500));
+export async function getChatResponse(message: string): Promise<ChatMessage> {
+  const sanitized = message.trim().slice(0, 500);
+  
+  if (USE_API) {
+    // ── API mode ──
+    await new Promise((r) => setTimeout(r, 300 + Math.random() * 500));
 
-      const systemPrompt = buildSystemPrompt();
-      try {
-        const content = await callGravityAPI([
-          { role: "system", content: systemPrompt },
-          { role: "user", content: data.message },
-        ]);
-        return {
-          role: "assistant" as const,
-          content,
-          relatedQuestion: undefined,
-        };
-      } catch (err) {
-        console.error("Gravity API error, falling back to knowledge base:", err);
-        // Fall through to knowledge base fallback
-      }
-    }
-
-    // ── Knowledge-base-only mode (fallback) ──
-    await new Promise((r) => setTimeout(r, 500 + Math.random() * 800));
-
-    const result = findBestAnswer(data.message);
-
-    if (result) {
+    const systemPrompt = buildSystemPrompt();
+    try {
+      const content = await callGravityAPI([
+        { role: "system", content: systemPrompt },
+        { role: "user", content: sanitized },
+      ]);
       return {
         role: "assistant" as const,
-        content: result.answer,
-        relatedQuestion: result.question,
+        content,
+        relatedQuestion: undefined,
       };
+    } catch (err) {
+      console.error("Gravity API error, falling back to knowledge base:", err);
     }
+  }
 
+  // ── Knowledge-base-only mode (fallback) ──
+  await new Promise((r) => setTimeout(r, 500 + Math.random() * 800));
+
+  const result = findBestAnswer(sanitized);
+
+  if (result) {
     return {
       role: "assistant" as const,
-      content:
-        "I'm not sure I understood your question. I can help with questions about our services, pricing, approach, technology, and who we work with. Here are some things you can ask me:\n\n" +
-        suggestedQuestions.map((q) => `• "${q}"`).join("\n") +
-        "\n\nOr feel free to rephrase your question!",
-      relatedQuestion: undefined,
+      content: result.answer,
+      relatedQuestion: result.question,
     };
-  });
+  }
+
+  return {
+    role: "assistant" as const,
+    content:
+      "I'm not sure I understood your question. I can help with questions about our services, pricing, approach, technology, and who we work with. Here are some things you can ask me:\n\n" +
+      suggestedQuestions.map((q) => `• "${q}"`).join("\n") +
+      "\n\nOr feel free to rephrase your question!",
+    relatedQuestion: undefined,
+  };
+}

@@ -12,7 +12,6 @@ import {
   updateLeadStatus,
   createLead,
   createCall,
-  getDashboardSummary as getSummary,
 } from "~/lib/crm";
 
 export const Route = createFileRoute("/crm")({
@@ -44,7 +43,7 @@ function CRMPage() {
   }, [authed]);
 
   async function loadData() {
-    setSummary(await getSummary());
+    setSummary(await getDashboardSummary());
     setLeads(await getLeads());
     setCalls(await getCalls());
     setProposals(await getProposals());

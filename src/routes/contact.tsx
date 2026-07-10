@@ -1,38 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 
-const submitContact = createServerFn({ method: "POST" })
-  .validator((data: unknown) => {
-    const { name, email, company, service, message } =
-      data as Record<string, string>;
-    if (!name?.trim() || !email?.trim() || !message?.trim()) {
-      throw new Error("Name, email, and message are required");
-    }
-    return {
-      name: name.trim(),
-      email: email.trim(),
-      company: company?.trim() || "",
-      service: service?.trim() || "",
-      message: message.trim(),
-    };
-  })
-  .handler(async ({ data }) => {
-    const timestamp = new Date().toISOString();
-    const logEntry = `[${timestamp}] INQUIRY from ${data.name} (${data.email})${data.company ? ` — ${data.company}` : ""}${data.service ? ` | Service: ${data.service}` : ""}\nMessage: ${data.message}\n---\n`;
-    try {
-      const { appendFile, mkdir } = await import("node:fs/promises");
-      await mkdir(".data", { recursive: true });
-      await appendFile(".data/inquiries.log", logEntry, "utf8");
-    } catch (err) {
-      console.log("Contact form submission:", logEntry);
-    }
-    await new Promise((r) => setTimeout(r, 500));
-    return {
-      success: true,
-      message: `Thanks ${data.name}! We've received your inquiry and will get back to you within 1 business day.`,
-    };
+async function submitContact(data: { name: string; email: string; company: string; service: string; message: string }) {
+  const res = await fetch("/api/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
   });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || "Submission failed");
+  }
+  return res.json();
+}
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -78,7 +58,7 @@ function Contact() {
     e.preventDefault();
     setStatus({ type: "submitting" });
     try {
-      const result = await submitContact({ data: formData });
+      const result = await submitContact(formData);
       setStatus({ type: "success", message: result.message });
       setFormData({ name: "", email: "", company: "", service: "", message: "" });
     } catch (err) {

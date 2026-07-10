@@ -204,22 +204,16 @@ async function saveLead(data: {
   }
 }
 
-// For the server-side team-db call, we use createServerFn
-// but since this needs to be imported, we do it in the component
-import { createServerFn } from "@tanstack/react-start";
-
-const saveLeadToDB = createServerFn({ method: "POST" })
-  .validator((d: { name: string; email: string; company?: string; phone?: string; interest?: string }) => d)
-  .handler(async ({ data }) => {
-    const nameSafe = data.name.replace(/'/g, "''");
-    const emailSafe = data.email.replace(/'/g, "''");
-    const companySafe = (data.company || "").replace(/'/g, "''");
-    const phoneSafe = (data.phone || "").replace(/'/g, "''");
-    const interestSafe = (data.interest || "").replace(/'/g, "''");
-    const sql = `INSERT INTO leads (name, email, company, phone, interest, source) VALUES ('${nameSafe}', '${emailSafe}', '${companySafe}', '${phoneSafe}', '${interestSafe}', 'chatbot')`;
-    await Bun.$`team-db ${sql}`.text();
-    return { ok: true };
+// Client-side API call
+async function saveLeadToDB(data: { name: string; email: string; company?: string; phone?: string; interest?: string }) {
+  const res = await fetch("/api/leads", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ...data, source: "chatbot" }),
   });
+  if (!res.ok) throw new Error("Failed to save lead");
+  return res.json();
+}
 
 // ── Component ──
 function DemoPage() {
