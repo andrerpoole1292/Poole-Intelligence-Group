@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { WhyPigSection, FloatingCta } from "~/components/shared";
+import AnimatedWorkflow from "~/components/AnimatedWorkflow";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -8,44 +9,90 @@ export const Route = createFileRoute("/")({
 function Home() {
   return (
     <div>
-      {/* Hero Section */}
+      {/* ─── Hero Section ─── */}
       <section className="min-h-dvh bg-gradient-to-b from-white via-[#F5F7FA] to-white dark:from-gray-950 dark:via-[#0A1628]/30 dark:to-gray-950">
         <div className="mx-auto flex min-h-dvh max-w-6xl flex-col items-center justify-center px-6 pt-20 text-center">
           <span className="mb-6 rounded-full border border-[#C0C0C0] bg-[#F5F7FA] px-4 py-1.5 text-xs font-semibold text-[#1B2A4A] dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
-            AI for Small & Mid-Sized Businesses
+            Practical AI for Growing Businesses — 10 to 250 Employees
           </span>
           <h1 className="max-w-4xl text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-            Building{" "}
             <span className="bg-gradient-to-r from-[#1B2A4A] to-[#3A5A8C] bg-clip-text text-transparent dark:from-[#6B8DBF] dark:to-[#3A5A8C]">
-              Smarter Businesses
+              Reclaim 15–30 Hours
             </span>
             <br />
-            with AI
+            Per Employee, Every Month
           </h1>
+          <p className="mt-4 max-w-2xl text-xl font-semibold text-[#1B2A4A] dark:text-gray-200">
+            AI That Actually Works — Without the Overwhelm
+          </p>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-600 dark:text-gray-400 sm:text-xl">
-            Poole Intelligence Group helps SMBs build smarter operations with
-            AI — enterprise-caliber strategy, workflow automation, AI agents,
-            digital strategy, and implementation — without the enterprise price
-            tag or the hype.
+            We help you automate repetitive admin work, cut customer response
+            times from hours to minutes, and convert more leads — without a
+            technical team or a six-figure budget.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Link
               to="/contact"
               className="rounded-xl bg-[#1B2A4A] px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-[#1B2A4A]/25 transition hover:bg-[#2A3A5A] hover:shadow-[#1B2A4A]/40"
             >
-              Schedule a Free Discovery Call
+              See What AI Could Save Your Team →
             </Link>
             <Link
-              to="/how-it-works"
+              to="/services"
               className="rounded-xl border border-[#C0C0C0] bg-white px-8 py-4 text-sm font-semibold text-[#1B2A4A] transition hover:bg-[#F5F7FA] dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:hover:bg-gray-800"
             >
-              See How It Works
+              How It Works
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Lead Magnet */}
+      {/* ─── Above-the-Fold Results Bar ─── */}
+      <section className="border-y border-[#E8E8E8] bg-white py-12 dark:border-gray-800 dark:bg-gray-950">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="mb-8 text-center text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+            What Our Clients Typically Achieve
+          </p>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <MetricCard
+              icon="⏱️"
+              metric="15–30 hrs"
+              label="Saved per employee per month"
+              sub="On repetitive admin & data entry"
+            />
+            <MetricCard
+              icon="📉"
+              metric="80% fewer"
+              label="Manual errors"
+              sub="In data entry & processing"
+            />
+            <MetricCard
+              icon="⚡"
+              metric="Response in"
+              label="Seconds, not hours"
+              sub="AI-powered chat & email automation"
+            />
+            <MetricCard
+              icon="📈"
+              metric="3–5×"
+              label="Content output"
+              sub="With the same team size"
+            />
+          </div>
+          <p className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+            We'll show you exactly what AI could save your team —{" "}
+            <Link
+              to="/contact"
+              className="font-semibold text-[#1B2A4A] underline dark:text-[#6B8DBF]"
+            >
+              in a 30-minute discovery call
+            </Link>
+            . No pitch. Just math.
+          </p>
+        </div>
+      </section>
+
+      {/* ─── Lead Magnet ─── */}
       <section className="bg-[#1B2A4A] py-20 dark:bg-[#0A1628]">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <span className="mb-4 inline-block rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold text-white">
@@ -73,48 +120,49 @@ function Home() {
         </div>
       </section>
 
-      {/* Social Proof — Real metrics with context */}
-      <section className="border-y border-[#E8E8E8] bg-white py-16 dark:border-gray-800 dark:bg-gray-950">
+      {/* ─── Trust Badges ─── */}
+      <section className="bg-white py-20 dark:bg-gray-950">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="mb-10 text-center text-sm font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-            Serving teams in
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 text-gray-300 dark:text-gray-700">
-            <span className="text-2xl font-bold tracking-tight">Professional Services</span>
-            <span className="text-2xl font-bold tracking-tight">E-Commerce</span>
-            <span className="text-2xl font-bold tracking-tight">SaaS</span>
-            <span className="text-2xl font-bold tracking-tight">Traditional Industries</span>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <TrustBadgeItem
+              icon="🪖"
+              title="Veteran-Owned Business"
+              subtitle="Disciplined mission execution"
+            />
+            <TrustBadgeItem
+              icon="🎓"
+              title="MBA — Strategic Management"
+              subtitle="Strategy, operations & leadership"
+            />
+            <TrustBadgeItem
+              icon="📖"
+              title="Doctoral Candidate (DBA)"
+              subtitle="Digital media & strategic content"
+            />
+            <TrustBadgeItem
+              icon="🔒"
+              title="Active Secret Security Clearance"
+              subtitle="Trusted with sensitive information"
+            />
           </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-3">
-            <div className="rounded-xl bg-[#F5F7FA] p-6 text-center dark:bg-gray-900">
-              <div className="text-3xl font-bold text-[#1B2A4A] dark:text-[#6B8DBF]">
-                10–250
-              </div>
-              <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                Employee sweet spot
-              </div>
-            </div>
-            <div className="rounded-xl bg-[#F5F7FA] p-6 text-center dark:bg-gray-900">
-              <div className="text-3xl font-bold text-[#1B2A4A] dark:text-[#6B8DBF]">
-                2&ndash;12
-              </div>
-              <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                Weeks to first results
-              </div>
-            </div>
-            <div className="rounded-xl bg-[#F5F7FA] p-6 text-center dark:bg-gray-900">
-              <div className="text-3xl font-bold text-[#1B2A4A] dark:text-[#6B8DBF]">
-                <span className="text-2xl">$</span>5K&ndash;<span className="text-2xl">$</span>50K
-              </div>
-              <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                Typical engagement range
-              </div>
-            </div>
+          <div className="mx-auto mt-12 max-w-3xl text-center">
+            <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              <strong className="text-[#1B2A4A] dark:text-gray-200">
+                Why growing businesses trust Poole Intelligence Group:
+              </strong>{" "}
+              We bring a rare combination of credentials to every engagement. An
+              MBA in strategic management and doctoral candidacy provide academic
+              rigor. A U.S. Army National Guard background — including an active
+              Secret Security Clearance — provides discipline, precision, and
+              trustworthiness. You're not hiring a generalist. You're hiring
+              someone who has been entrusted with sensitive information at the
+              federal level.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Services Overview */}
+      {/* ─── Services Overview — Outcome-Focused ─── */}
       <section className="bg-[#F5F7FA] py-24 dark:bg-gray-900">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-2xl text-center">
@@ -122,45 +170,52 @@ function Home() {
               What We Do
             </span>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Enterprise-Caliber AI for SMBs
+              What You'll Get —{" "}
+              <span className="text-[#3A5A8C]">Not What We'll Do</span>
             </h2>
             <p className="mt-4 text-gray-600 dark:text-gray-400">
-              We deliver AI strategy, workflow automation, AI agents, digital
-              strategy, and implementation — without the enterprise price tag.
+              Every engagement is structured around one question:{" "}
+              <em>"What does the client actually walk away with?"</em>
             </p>
           </div>
 
           <div className="mt-16 grid gap-8 md:grid-cols-3">
-            <ServiceCard
+            <ServiceCardOutcome
               title="AI Strategy & Consulting"
-              description="Discovery workshops, strategy roadmaps, and implementation projects tailored to your business goals."
-              features={[
-                "Identify tasks AI can automate in your business",
-                "Create a 90-day AI implementation roadmap",
-                "Recommend the best AI tools for your budget",
-                "Estimate expected ROI and time savings",
+              tagline="Clarity you can act on. A plan you can execute."
+              icon="🎯"
+              outcome="A prioritized implementation roadmap with clear milestones, budget estimates, and a 90-day action plan — not a 200-page report you'll never read."
+              points={[
+                "Which 3–5 AI opportunities drive the greatest ROI",
+                "What data, resources, and timeline each requires",
+                "Which vendors to trust — and which to avoid",
+                "How to measure success in the first 90 days",
               ]}
               link="/services#consulting"
             />
-            <ServiceCard
-              title="Training & Enablement"
-              description="Group workshops, ongoing cohorts, and executive briefings that build real AI skills across your organization."
-              features={[
-                "Help your team save 5–10 hours per week",
-                "Reduce time spent on emails and data entry",
-                "Build confidence with AI tools they'll actually use",
-                "Custom learning paths by role",
+            <ServiceCardOutcome
+              title="AI Agents & Workflow Automation"
+              tagline="Custom AI systems that do the work — deployed in weeks."
+              icon="🤖"
+              outcome="AI systems connected to your existing tools that eliminate hours of manual work — deployed, tested, and documented within weeks."
+              points={[
+                "AI handling support, research, data entry & lead qualification",
+                "Automated workflows connecting CRM, email & documents",
+                "A documented system your team can operate",
+                "Measurable time and cost savings from day one",
               ]}
               link="/services#training"
             />
-            <ServiceCard
-              title="Managed AI Solutions"
-              description="Custom AI agents, automation pipelines, chatbots, and content workflows — deployed and maintained for you."
-              features={[
-                "Automate customer support responses 24/7",
-                "Reduce manual data entry and document processing",
-                "Generate reports and proposals in minutes",
-                "Ongoing monitoring & optimization included",
+            <ServiceCardOutcome
+              title="Digital Strategy & Implementation"
+              tagline="From strategic clarity to deployed solutions."
+              icon="⚡"
+              outcome="A comprehensive digital strategy with AI-powered execution — from content workflows to marketing automation to full-stack implementation."
+              points={[
+                "5–10× faster content production, consistent quality",
+                "Marketing automation that actually converts",
+                "Systems that work together, not against each other",
+                "A partner who builds what they design",
               ]}
               link="/services#managed"
             />
@@ -171,13 +226,155 @@ function Home() {
               to="/services"
               className="inline-flex items-center gap-2 text-sm font-semibold text-[#1B2A4A] transition hover:text-[#3A5A8C] dark:text-[#6B8DBF] dark:hover:text-[#8BAED4]"
             >
-              Learn more about our services &rarr;
+              Explore all services →
             </Link>
           </div>
         </div>
       </section>
 
-      {/* The PIG Methodology — named, distinctive approach */}
+      {/* ─── ROI Section ─── */}
+      <section className="bg-white py-24 dark:bg-gray-950">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="mb-4 inline-block rounded-full border border-[#C0C0C0] bg-[#F5F7FA] px-3 py-1 text-xs font-semibold text-[#1B2A4A] dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
+              The Numbers
+            </span>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              The ROI of AI:{" "}
+              <span className="text-[#3A5A8C]">Measurable, Predictable, Repeatable</span>
+            </h2>
+            <p className="mt-4 text-gray-600 dark:text-gray-400">
+              Not hypothetical benefits. Real numbers from real engagements.
+            </p>
+          </div>
+
+          {/* Impact Cards */}
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <ImpactCard
+              icon="⏱️"
+              metric="15–30 hrs"
+              label="Per employee per month"
+              sub="Reclaimed from admin & manual data entry"
+            />
+            <ImpactCard
+              icon="⚡"
+              metric="Seconds"
+              label="Customer response time"
+              sub="Down from hours via AI chat & email automation"
+            />
+            <ImpactCard
+              icon="📈"
+              metric="2–5×"
+              label="More leads converted"
+              sub="Through automated follow-up & intelligent qualification"
+            />
+            <ImpactCard
+              icon="💰"
+              metric="5–10×"
+              label="Content output"
+              sub="Same team — AI-powered workflows eliminate bottlenecks"
+            />
+          </div>
+
+          {/* Cost-Benefit Summary */}
+          <div className="mx-auto mt-16 max-w-4xl">
+            <div className="rounded-2xl border border-[#E8E8E8] bg-[#F5F7FA] p-8 dark:border-gray-800 dark:bg-gray-900">
+              <h3 className="mb-6 text-center text-lg font-bold text-[#1B2A4A] dark:text-gray-100">
+                Cost-Benefit Summary
+              </h3>
+              <p className="mb-6 text-center text-sm text-gray-500">
+                Most first engagements range from <strong>$5,000 to $25,000</strong>
+              </p>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-sm">
+                  <thead>
+                    <tr className="border-b border-[#E8E8E8] dark:border-gray-700">
+                      <th className="pb-3 font-semibold text-[#1B2A4A] dark:text-gray-200">Area</th>
+                      <th className="pb-3 font-semibold text-[#1B2A4A] dark:text-gray-200">Typical Improvement</th>
+                      <th className="pb-3 font-semibold text-[#1B2A4A] dark:text-gray-200">Annual Value (50-person co.)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#E8E8E8] dark:divide-gray-700">
+                    <tr>
+                      <td className="py-3 text-gray-700 dark:text-gray-300">Labor savings</td>
+                      <td className="py-3 text-gray-700 dark:text-gray-300">15–30 hrs/emp/mo reclaimed</td>
+                      <td className="py-3 font-semibold text-[#1B2A4A] dark:text-[#6B8DBF]">$150K–$300K</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 text-gray-700 dark:text-gray-300">Support efficiency</td>
+                      <td className="py-3 text-gray-700 dark:text-gray-300">50–70% of inquiries automated</td>
+                      <td className="py-3 font-semibold text-[#1B2A4A] dark:text-[#6B8DBF]">$30K–$60K</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 text-gray-700 dark:text-gray-300">Lead conversion</td>
+                      <td className="py-3 text-gray-700 dark:text-gray-300">20–40% improvement in follow-up</td>
+                      <td className="py-3 font-semibold text-[#1B2A4A] dark:text-[#6B8DBF]">$50K–$200K</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 text-gray-700 dark:text-gray-300">Content production</td>
+                      <td className="py-3 text-gray-700 dark:text-gray-300">3–5× output with same team</td>
+                      <td className="py-3 font-semibold text-[#1B2A4A] dark:text-[#6B8DBF]">$40K–$100K</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="mt-6 rounded-lg bg-green-50 p-4 text-center dark:bg-green-900/20">
+                <p className="text-sm font-semibold text-green-800 dark:text-green-300">
+                  Typical payback period: <span className="text-lg">2–4 months</span>
+                </p>
+                <p className="mt-1 text-xs text-green-700 dark:text-green-400">
+                  Scenario: 50-person firm invests $15K → 80% reduction in manual reporting → $96K/year savings
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Industry Trust / Social Proof ─── */}
+      <section className="bg-white py-16 dark:bg-gray-950">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="mb-10 text-center text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+            Trusted by teams in
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 text-gray-300 dark:text-gray-700">
+            <span className="text-2xl font-bold tracking-tight">Professional Services</span>
+            <span className="text-2xl font-bold tracking-tight">E-Commerce &amp; Retail</span>
+            <span className="text-2xl font-bold tracking-tight">SaaS &amp; Technology</span>
+            <span className="text-2xl font-bold tracking-tight">Traditional Industries</span>
+          </div>
+          <div className="mt-12 grid gap-6 sm:grid-cols-3">
+            <div className="rounded-xl bg-[#F5F7FA] p-6 text-center dark:bg-gray-900">
+              <div className="text-3xl font-bold text-[#1B2A4A] dark:text-[#6B8DBF]">
+                10–250
+              </div>
+              <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                Employees — our focus
+              </div>
+            </div>
+            <div className="rounded-xl bg-[#F5F7FA] p-6 text-center dark:bg-gray-900">
+              <div className="text-3xl font-bold text-[#1B2A4A] dark:text-[#6B8DBF]">
+                30–60
+              </div>
+              <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                Days to first measurable result
+              </div>
+            </div>
+            <div className="rounded-xl bg-[#F5F7FA] p-6 text-center dark:bg-gray-900">
+              <div className="text-3xl font-bold text-[#1B2A4A] dark:text-[#6B8DBF]">
+                Flat-fee
+              </div>
+              <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                Transparent pricing from day one
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <AnimatedWorkflow />
+
+      {/* ─── The PIG|4 Framework ─── */}
       <section className="bg-white py-24 dark:bg-gray-950">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-2xl text-center">
@@ -209,7 +406,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Who We Help */}
+      {/* ─── Industries We Serve ─── */}
       <section className="bg-[#F5F7FA] py-20 dark:bg-gray-900">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-2xl text-center">
@@ -234,7 +431,10 @@ function Home() {
         </div>
       </section>
 
-      {/* No Pressure Guarantee */}
+      {/* ─── Why Choose Us ─── */}
+      <WhyPigSection />
+
+      {/* ─── No-Pressure Guarantee ─── */}
       <section className="bg-white py-20 dark:bg-gray-950">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <span className="mb-4 inline-block rounded-full border border-[#C0C0C0] bg-[#F5F7FA] px-3 py-1 text-xs font-semibold text-[#1B2A4A] dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
@@ -259,119 +459,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Sample Automation Workflow — honest example, not fabricated results */}
-      <section className="bg-[#F5F7FA] py-24 dark:bg-gray-900">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="mb-4 inline-block rounded-full border border-[#C0C0C0] bg-white px-3 py-1 text-xs font-semibold text-[#1B2A4A] dark:border-gray-700 dark:bg-gray-950 dark:text-gray-300">
-              Sample Workflow
-            </span>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-[#1B2A4A] dark:text-gray-100">
-              Example: AI Document Processing
-            </h2>
-            <p className="mt-4 text-gray-600 dark:text-gray-400">
-              This example demonstrates how an AI workflow can reduce repetitive administrative work. Actual results vary depending on business processes and implementation.
-            </p>
-          </div>
-          <div className="mt-12 mx-auto max-w-4xl">
-            <div className="rounded-2xl border border-[#E8E8E8] bg-white p-8 shadow-sm dark:border-gray-800 dark:bg-gray-950">
-              <h3 className="text-lg font-bold text-[#1B2A4A] dark:text-gray-100 mb-4">The Scenario</h3>
-              <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400 mb-6">
-                A professional services firm receives hundreds of documents per week — contracts, invoices, and reports — 
-                that must be reviewed, categorized, and entered into their CRM. This manual process consumes roughly 
-                20-30 hours of staff time per week.
-              </p>
-              <h3 className="text-lg font-bold text-[#1B2A4A] dark:text-gray-100 mb-4">The AI Workflow</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#1B2A4A] text-xs font-bold text-white">1</span>
-                  <div>
-                    <p className="text-sm font-semibold text-[#1B2A4A] dark:text-gray-100">Ingest</p>
-                    <p className="text-xs text-gray-500">Documents are uploaded to a secure cloud bucket. An AI pipeline detects file types and extracts text.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#1B2A4A] text-xs font-bold text-white">2</span>
-                  <div>
-                    <p className="text-sm font-semibold text-[#1B2A4A] dark:text-gray-100">Classify</p>
-                    <p className="text-xs text-gray-500">An LLM categorizes each document (contract, invoice, report, etc.) and extracts key fields: date, amount, parties, due dates.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#1B2A4A] text-xs font-bold text-white">3</span>
-                  <div>
-                    <p className="text-sm font-semibold text-[#1B2A4A] dark:text-gray-100">Review</p>
-                    <p className="text-xs text-gray-500">Staff review AI-generated summaries and flagged items in a dashboard. Edits are submitted back to the system.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#1B2A4A] text-xs font-bold text-white">4</span>
-                  <div>
-                    <p className="text-sm font-semibold text-[#1B2A4A] dark:text-gray-100">Integrate</p>
-                    <p className="text-xs text-gray-500">Approved data syncs to the CRM automatically. Staff are notified of completed items via Slack/email.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-6 rounded-lg bg-amber-50 border border-amber-200 p-4">
-                <p className="text-xs text-amber-800">
-                  <strong>Note:</strong> This is an illustrative workflow. Actual implementations vary based on data complexity, system integrations, and business requirements.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="mt-8 text-center">
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Want to see how this would apply to your business? <Link to="/contact" className="font-semibold text-[#1B2A4A] underline dark:text-[#6B8DBF]">Let's build a sample together</Link>.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Founding Client Program — honest alternative to fake testimonials */}
-      <section className="bg-white py-24 dark:bg-gray-950">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="mb-4 inline-block rounded-full border border-[#C0C0C0] bg-[#F5F7FA] px-3 py-1 text-xs font-semibold text-[#1B2A4A] dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
-              Founding Client Program
-            </span>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-[#1B2A4A] dark:text-gray-100">
-              Be Among the First
-            </h2>
-            <p className="mt-4 text-gray-600 dark:text-gray-400">
-              We're currently accepting a limited number of founding clients who will receive hands-on implementation and discounted pricing in exchange for candid feedback — and, if satisfied, a future testimonial.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-3">
-            <div className="rounded-2xl border border-[#E8E8E8] bg-[#F5F7FA] p-8 dark:border-gray-800 dark:bg-gray-900">
-              <div className="text-2xl font-bold text-[#1B2A4A] dark:text-[#6B8DBF] mb-3">Discounted Pricing</div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Founding clients receive reduced rates on strategy workshops, implementation projects, and managed solutions.</p>
-            </div>
-            <div className="rounded-2xl border border-[#E8E8E8] bg-[#F5F7FA] p-8 dark:border-gray-800 dark:bg-gray-900">
-              <div className="text-2xl font-bold text-[#1B2A4A] dark:text-[#6B8DBF] mb-3">Hands-On Delivery</div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Work directly with the founder. Priority access to new capabilities and features as they're developed.</p>
-            </div>
-            <div className="rounded-2xl border border-[#E8E8E8] bg-[#F5F7FA] p-8 dark:border-gray-800 dark:bg-gray-900">
-              <div className="text-2xl font-bold text-[#1B2A4A] dark:text-[#6B8DBF] mb-3">Shape the Offering</div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Your feedback directly influences our service packages, tools, and methodology. Help us build a better consulting firm.</p>
-            </div>
-          </div>
-          <div className="mt-8 text-center">
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
-              Limited to 10 founding clients. No commitment required — we'll start with a free discovery call.
-            </p>
-            <Link
-              to="/contact"
-              className="inline-block rounded-xl bg-[#1B2A4A] px-8 py-4 text-sm font-semibold text-white shadow-lg transition hover:bg-[#2A3A5A]"
-            >
-              Apply for the Founding Client Program
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <WhyPigSection />
-
-      {/* Enterprise Trust Signals */}
+      {/* ─── Enterprise Trust Signals ─── */}
       <section className="border-y border-[#E8E8E8] bg-white py-16 dark:border-gray-800 dark:bg-gray-950">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mx-auto max-w-2xl text-center">
@@ -394,24 +482,51 @@ function Home() {
         </div>
       </section>
 
-      {/* Final CTA */}
+      {/* ─── Final CTA ─── */}
       <section className="bg-[#1B2A4A] py-24 dark:bg-[#0A1628]">
-        <div className="mx-auto max-w-3xl px-6 text-center">
+        <div className="mx-auto max-w-4xl px-6 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Ready to Build a Smarter Business?
+            What Could 30 Hours Per Employee Per Month Do for Your Business?
           </h2>
-          <p className="mt-4 text-lg text-gray-300">
-            Let's talk about where you are, where you want to be, and how we can
-            get you there — no jargon, no pressure.
+          <ul className="mx-auto mt-6 max-w-lg space-y-3 text-left text-gray-300">
+            <li className="flex items-center gap-3">
+              <span className="text-green-400">✓</span>
+              More time for revenue-generating work
+            </li>
+            <li className="flex items-center gap-3">
+              <span className="text-green-400">✓</span>
+              Faster response to customers
+            </li>
+            <li className="flex items-center gap-3">
+              <span className="text-green-400">✓</span>
+              Fewer manual errors
+            </li>
+            <li className="flex items-center gap-3">
+              <span className="text-green-400">✓</span>
+              Less team burnout
+            </li>
+          </ul>
+          <p className="mt-6 text-lg text-gray-300">
+            A 30-minute conversation will tell you exactly what's possible for
+            your business. No pitch. No pressure. Just an honest assessment.
           </p>
           <div className="mt-10">
             <Link
               to="/contact"
               className="inline-block rounded-xl bg-white px-10 py-4 text-sm font-semibold text-[#1B2A4A] shadow-lg transition hover:bg-gray-100"
             >
-              Schedule Your 30-Minute Discovery Call
+              Calculate Your AI Savings →
             </Link>
           </div>
+          <p className="mt-4 text-sm text-gray-400">
+            Or{" "}
+            <Link
+              to="/services"
+              className="font-semibold text-[#6B8DBF] underline"
+            >
+              explore our services first
+            </Link>
+          </p>
         </div>
       </section>
 
@@ -420,33 +535,58 @@ function Home() {
   );
 }
 
-function ServiceCard({
+/* ─── Component Definitions ─── */
+
+function MetricCard({ icon, metric, label, sub }: { icon: string; metric: string; label: string; sub: string }) {
+  return (
+    <div className="rounded-xl border border-[#E8E8E8] bg-white p-6 text-center dark:border-gray-800 dark:bg-gray-950">
+      <div className="text-2xl">{icon}</div>
+      <div className="mt-2 text-2xl font-bold text-[#1B2A4A] dark:text-[#6B8DBF]">{metric}</div>
+      <div className="mt-1 text-sm font-semibold text-gray-800 dark:text-gray-200">{label}</div>
+      <div className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">{sub}</div>
+    </div>
+  );
+}
+
+function TrustBadgeItem({ icon, title, subtitle }: { icon: string; title: string; subtitle: string }) {
+  return (
+    <div className="rounded-xl border border-[#E8E8E8] bg-[#F5F7FA] p-6 text-center dark:border-gray-800 dark:bg-gray-900">
+      <div className="text-3xl">{icon}</div>
+      <h3 className="mt-3 text-sm font-bold text-[#1B2A4A] dark:text-gray-100">{title}</h3>
+      <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">{subtitle}</p>
+    </div>
+  );
+}
+
+function ServiceCardOutcome({
   title,
-  description,
-  features,
+  tagline,
+  icon,
+  outcome,
+  points,
   link,
 }: {
   title: string;
-  description: string;
-  features: string[];
+  tagline: string;
+  icon: string;
+  outcome: string;
+  points: string[];
   link: string;
 }) {
   return (
     <div className="group rounded-2xl border border-[#E8E8E8] bg-white p-8 shadow-sm transition hover:border-[#C0C0C0] hover:shadow-md dark:border-gray-800 dark:bg-gray-950 dark:hover:border-gray-700">
-      <h3 className="mb-3 text-lg font-bold text-[#1B2A4A] dark:text-gray-100">
-        {title}
-      </h3>
-      <p className="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-        {description}
+      <div className="mb-4 text-3xl">{icon}</div>
+      <h3 className="mb-1 text-lg font-bold text-[#1B2A4A] dark:text-gray-100">{title}</h3>
+      <p className="mb-4 text-xs font-medium text-[#3A5A8C] dark:text-[#6B8DBF]">{tagline}</p>
+      <p className="mb-6 text-sm leading-relaxed text-gray-600 dark:text-gray-400">{outcome}</p>
+      <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-500">
+        You'll know:
       </p>
       <ul className="mb-6 space-y-2">
-        {features.map((f) => (
-          <li
-            key={f}
-            className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300"
-          >
-            <span className="text-[#3A5A8C] dark:text-[#6B8DBF]">&#10003;</span>
-            {f}
+        {points.map((p) => (
+          <li key={p} className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
+            <span className="mt-0.5 shrink-0 text-[#3A5A8C] dark:text-[#6B8DBF]">✓</span>
+            {p}
           </li>
         ))}
       </ul>
@@ -455,8 +595,19 @@ function ServiceCard({
         hash={link.split("#")[1]}
         className="text-sm font-semibold text-[#1B2A4A] transition hover:text-[#3A5A8C] dark:text-[#6B8DBF] dark:hover:text-[#8BAED4]"
       >
-        Learn more &rarr;
+        Learn more →
       </Link>
+    </div>
+  );
+}
+
+function ImpactCard({ icon, metric, label, sub }: { icon: string; metric: string; label: string; sub: string }) {
+  return (
+    <div className="rounded-xl border border-[#E8E8E8] bg-[#F5F7FA] p-6 text-center dark:border-gray-800 dark:bg-gray-900">
+      <div className="text-2xl">{icon}</div>
+      <div className="mt-2 text-2xl font-bold text-[#1B2A4A] dark:text-[#6B8DBF]">{metric}</div>
+      <div className="mt-1 text-sm font-semibold text-gray-800 dark:text-gray-200">{label}</div>
+      <div className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">{sub}</div>
     </div>
   );
 }
