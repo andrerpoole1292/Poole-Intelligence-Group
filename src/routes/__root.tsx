@@ -316,6 +316,16 @@ function Footer() {
               <li>hello@pooleintelligencegroup.com</li>
               <li>Charlotte, North Carolina</li>
               <li>Serving clients nationwide</li>
+              <li>
+                <a
+                  href="https://linkedin.com/company/pooleintelligence"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#1B2A4A] dark:hover:text-gray-100"
+                >
+                  LinkedIn →
+                </a>
+              </li>
             </ul>
           </div>
         </div>

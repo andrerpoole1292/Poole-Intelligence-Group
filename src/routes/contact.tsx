@@ -2,10 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 
 async function submitContact(data: { name: string; email: string; company: string; service: string; message: string }) {
-  const res = await fetch("/api/contact", {
+  // Store lead via the leads endpoint
+  const res = await fetch("/api/leads", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+    body: JSON.stringify({ ...data, source: "contact_form" }),
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
@@ -99,11 +100,25 @@ function Contact() {
                     <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-3xl dark:bg-green-900/30">
                       &#10003;
                     </div>
-                    <h3 className="text-xl font-bold text-[#1B2A4A] dark:text-gray-100">Message Sent!</h3>
-                    <p className="mt-3 text-gray-600 dark:text-gray-400">{status.message}</p>
+                    <h3 className="text-xl font-bold text-[#1B2A4A] dark:text-gray-100">Thanks for Reaching Out!</h3>
+                    <p className="mt-3 text-gray-600 dark:text-gray-400">We've received your inquiry and will respond within 1 business day.</p>
+                    <div className="mt-6 w-full max-w-sm rounded-xl border border-[#C0C0C0] bg-white p-5 dark:border-gray-700 dark:bg-gray-950">
+                      <p className="text-sm font-semibold text-[#1B2A4A] dark:text-gray-100">
+                        ⚡ Want faster? Book a call directly.
+                      </p>
+                      <p className="mt-1 text-xs text-gray-500">Free 30-minute Discovery Call — no pressure, just honest advice.</p>
+                      <a
+                        href="https://calendly.com/pooleintelligence/discovery-call"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 inline-flex w-full items-center justify-center rounded-lg bg-[#1B2A4A] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#2A3A5A]"
+                      >
+                        Schedule a Free Discovery Call
+                      </a>
+                    </div>
                     <button
                       onClick={() => setStatus({ type: "idle" })}
-                      className="mt-8 rounded-lg border border-[#C0C0C0] bg-white px-6 py-3 text-sm font-semibold text-[#1B2A4A] transition hover:bg-[#F5F7FA] dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:hover:bg-gray-800"
+                      className="mt-6 rounded-lg border border-[#C0C0C0] bg-white px-6 py-3 text-sm font-semibold text-[#1B2A4A] transition hover:bg-[#F5F7FA] dark:border-gray-700 dark:bg-gray-950 dark:text-gray-100 dark:hover:bg-gray-800"
                     >
                       Send Another Message
                     </button>
@@ -176,6 +191,21 @@ function Contact() {
 
             <div className="lg:col-span-2">
               <div className="rounded-2xl border border-[#E8E8E8] bg-white p-8 shadow-sm dark:border-gray-800 dark:bg-gray-950">
+                {/* Calendar Booking CTA */}
+                <div className="mb-6 rounded-xl bg-gradient-to-br from-[#1B2A4A] to-[#3A5A8C] p-6 text-center">
+                  <p className="text-lg font-bold text-white">Skip the Wait</p>
+                  <p className="mt-1 text-sm text-gray-300">Book a free 30-minute Discovery Call directly.</p>
+                  <a
+                    href="https://calendly.com/pooleintelligence/discovery-call"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-[#1B2A4A] shadow-sm transition hover:bg-gray-100"
+                  >
+                    Schedule a Free Discovery Call
+                  </a>
+                  <p className="mt-2 text-xs text-gray-400">No pressure. No pitch. Just honest advice.</p>
+                </div>
+
                 <h3 className="text-lg font-bold text-[#1B2A4A] dark:text-gray-100">Here's what you can expect:</h3>
                 <ol className="mt-6 space-y-6">
                   {[

@@ -5,7 +5,7 @@ export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       { title: "Pricing & Engagement Models — Poole Intelligence Group" },
-      { name: "description", content: "Transparent pricing for AI consulting engagements. From $1,500 workshops to custom-managed solutions. Founding Client Program available." },
+      { name: "description", content: "Transparent pricing for AI consulting engagements. From $8K strategy to $3K training and $8K setup + $1.5K/mo managed solutions. Founding Client Program available." },
     ],
   }),
 });
@@ -13,9 +13,9 @@ export const Route = createFileRoute("/pricing")({
 const pricingTiers = [
   {
     name: "AI Strategy & Consulting",
-    price: "From $1,500",
+    price: "From $8,000",
     timeline: "1-6 weeks",
-    bestFor: "Businesses exploring AI or needing a roadmap",
+    bestFor: "Businesses exploring AI or needing a strategic roadmap",
     includes: [
       "AI Discovery Workshop",
       "Strategy Roadmap with milestones",
@@ -26,9 +26,9 @@ const pricingTiers = [
   },
   {
     name: "Training & Enablement",
-    price: "From $1,000",
+    price: "From $3,000",
     timeline: "1 day - 6 weeks",
-    bestFor: "Teams building AI skills",
+    bestFor: "Teams building AI skills across the organization",
     includes: [
       "Group workshops (virtual or on-site)",
       "Executive AI briefings",
@@ -39,8 +39,8 @@ const pricingTiers = [
   },
   {
     name: "Managed AI Solutions",
-    price: "Custom Quote",
-    timeline: "4-12 weeks initial, ongoing",
+    price: "From $8,000 setup",
+    timeline: "4-12 weeks initial + $1.5K/mo ongoing",
     bestFor: "Businesses wanting custom AI agents and automation",
     includes: [
       "Custom AI agents & chatbots",

@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { getProposalByToken } from "~/lib/crm";
 
-export const Route = createFileRoute("/proposal/")({
+export const Route = createFileRoute("/proposal")({
   component: ProposalViewPage,
   head: () => ({
     meta: [{ title: "Proposal — Poole Intelligence Group" }],

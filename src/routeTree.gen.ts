@@ -27,7 +27,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResourcesRoiCalculatorRouteImport } from './routes/resources/roi-calculator'
 import { Route as ResourcesImplementationChecklistRouteImport } from './routes/resources/implementation-checklist'
 import { Route as AdminLeadsRouteImport } from './routes/admin/leads'
-import { Route as ProposalRouteImport } from './routes/proposal.'
+import { Route as ProposalRouteImport } from './routes/proposal'
 import { Route as AdminProposalsNewRouteImport } from './routes/admin/proposals/new'
 
 const TermsRoute = TermsRouteImport.update({

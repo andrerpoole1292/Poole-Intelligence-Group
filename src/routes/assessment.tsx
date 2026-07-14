@@ -183,12 +183,12 @@ function Assessment() {
       <div className="mx-auto max-w-3xl px-6">
         {/* Header */}
         <div className="mb-8 text-center">
-          <span className="mb-4 inline-block rounded-full border border-[#C0C0C0] bg-[#F5F7FA] px-3 py-1 text-xs font-semibold text-[#1B2A4A] dark:border-gray-700 dark:bg-indigo-950/50 dark:text-[#6B8DBF]">
+          <span className="mb-4 inline-block rounded-full border border-[#C0C0C0] bg-[#F5F7FA] px-3 py-1 text-xs font-semibold text-[#1B2A4A] dark:border-gray-700 dark:bg-gray-900 dark:text-[#6B8DBF]">
             Free Assessment
           </span>
           <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
             AI Readiness{" "}
-            <span className="bg-gradient-to-r from-[#1B2A4A] to-[#3A5A8C] bg-clip-text text-transparent dark:from-indigo-400 dark:to-purple-400">
+            <span className="bg-gradient-to-r from-[#1B2A4A] to-[#3A5A8C] bg-clip-text text-transparent dark:from-[#6B8DBF] dark:to-[#3A5A8C]">
               Assessment
             </span>
           </h1>
@@ -221,7 +221,7 @@ function Assessment() {
                           className={`flex-1 rounded-xl border-2 px-3 py-3 text-center text-sm font-medium transition ${
                             isSelected
                               ? "border-[#1B2A4A] bg-[#1B2A4A] text-white"
-                              : "border-gray-200 bg-white text-gray-700 hover:border-[#3A5A8C] hover:bg-[#F0F2F5] dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-[#3A5A8C] dark:hover:bg-indigo-950/50"
+                              : "border-gray-200 bg-white text-gray-700 hover:border-[#3A5A8C] hover:bg-[#F0F2F5] dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-[#3A5A8C] dark:hover:bg-gray-800"
                           }`}
                         >
                           <span className="block text-lg font-bold">

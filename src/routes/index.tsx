@@ -38,7 +38,7 @@ function Home() {
               See What AI Could Save Your Team →
             </Link>
             <Link
-              to="/services"
+              to="/how-it-works"
               className="rounded-xl border border-[#C0C0C0] bg-white px-8 py-4 text-sm font-semibold text-[#1B2A4A] transition hover:bg-[#F5F7FA] dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:hover:bg-gray-800"
             >
               How It Works
@@ -204,7 +204,7 @@ function Home() {
                 "A documented system your team can operate",
                 "Measurable time and cost savings from day one",
               ]}
-              link="/services#training"
+              link="/services#managed"
             />
             <ServiceCardOutcome
               title="Digital Strategy & Implementation"
