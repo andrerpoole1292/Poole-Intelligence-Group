@@ -5,8 +5,9 @@ import { routeTree } from "./routeTree.gen";
 export function getRouter() {
   return createRouter({
     routeTree,
-    defaultPreload: "intent",
-    scrollRestoration: true,
+    // Preload and scroll restoration removed — they were causing
+    // main-thread blocking on input focus events (router was interpreting
+    // focus as "intent" to navigate, triggering preloads that blocked typing).
     defaultNotFoundComponent: () => <p>Not found</p>,
   });
 }

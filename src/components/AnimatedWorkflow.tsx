@@ -2,13 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 
 // ── Keyframes for detail panel fade-in ──
+// Moved inside useEffect to avoid module-level DOM manipulation that can
+// interfere with React hydration and cause main-thread blocking.
 const styleId = "pig-workflow-styles";
-if (typeof document !== "undefined" && !document.getElementById(styleId)) {
-  const style = document.createElement("style");
-  style.id = styleId;
-  style.textContent = `@keyframes workflowFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }`;
-  document.head.appendChild(style);
-}
 
 interface Step {
   icon: string;
@@ -58,6 +54,14 @@ export default function AnimatedWorkflow() {
 
   // Start animation when section scrolls into view
   useEffect(() => {
+    // Inject keyframe style safely inside a component lifecycle
+    if (typeof document !== "undefined" && !document.getElementById(styleId)) {
+      const style = document.createElement("style");
+      style.id = styleId;
+      style.textContent = `@keyframes workflowFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }`;
+      document.head.appendChild(style);
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
