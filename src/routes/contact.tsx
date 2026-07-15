@@ -2,17 +2,30 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 
 async function submitContact(data: { name: string; email: string; company: string; service: string; message: string }) {
-  // Store lead via the leads endpoint
-  const res = await fetch("/api/leads", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ ...data, source: "contact_form" }),
-  });
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || "Submission failed");
+  // Store lead via the leads endpoint with a 10-second timeout
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+  try {
+    const res = await fetch("/api/leads", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...data, source: "contact_form" }),
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || "Submission failed");
+    }
+    return res.json();
+  } catch (err) {
+    clearTimeout(timeoutId);
+    if (err instanceof DOMException && err.name === "AbortError") {
+      throw new Error("Request timed out. Please try again or email us directly at hello@pooleintelligencegroup.com.");
+    }
+    throw err;
   }
-  return res.json();
 }
 
 export const Route = createFileRoute("/contact")({
@@ -108,7 +121,7 @@ function Contact() {
                       </p>
                       <p className="mt-1 text-xs text-gray-500">Free 30-minute Discovery Call — no pressure, just honest advice.</p>
                       <a
-                        href="https://calendly.com/pooleintelligence/discovery-call"
+                        href="https://calendly.com/hello-pooleintelligencegroup/30min"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="mt-3 inline-flex w-full items-center justify-center rounded-lg bg-[#1B2A4A] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#2A3A5A]"
@@ -196,7 +209,7 @@ function Contact() {
                   <p className="text-lg font-bold text-white">Skip the Wait</p>
                   <p className="mt-1 text-sm text-gray-300">Book a free 30-minute Discovery Call directly.</p>
                   <a
-                    href="https://calendly.com/pooleintelligence/discovery-call"
+                    href="https://calendly.com/hello-pooleintelligencegroup/30min"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-[#1B2A4A] shadow-sm transition hover:bg-gray-100"
@@ -237,7 +250,7 @@ function Contact() {
                 </p>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                   Or follow us on{" "}
-                  <a href="#" className="font-medium text-[#1B2A4A] underline hover:text-[#3A5A8C] dark:text-[#6B8DBF] dark:hover:text-[#8BAED4]">
+                  <a href="https://linkedin.com/company/pooleintelligence" target="_blank" rel="noopener noreferrer" className="font-medium text-[#1B2A4A] underline hover:text-[#3A5A8C] dark:text-[#6B8DBF] dark:hover:text-[#8BAED4]">
                     LinkedIn
                   </a>{" "}
                   for practical AI insights and case studies.
