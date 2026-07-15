@@ -8,10 +8,9 @@ import {
 import type { ReactNode } from "react";
 import { useState } from "react";
 
-import appCss from "~/styles/app.css?url";
 import { StickyCtaBar } from "~/components/shared";
 
-// Structured data for LocalBusiness (Charlotte, NC)
+// Structured data for LocalBusiness (Charlotte, NC) — static constant
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -41,58 +40,65 @@ const localBusinessJsonLd = {
   sameAs: ["https://linkedin.com/company/pooleintelligence"],
 };
 
+// Static head meta — extracted to a constant so it doesn't create new
+// object references on every render, preventing re-render loops.
+const headMeta = [
+  { charSet: "utf-8" },
+  { name: "viewport", content: "width=device-width, initial-scale=1" },
+  {
+    title: "Poole Intelligence Group — Building Smarter Businesses with AI",
+  },
+  {
+    name: "description",
+    content:
+      "Poole Intelligence Group helps small and medium-sized businesses build smarter operations with AI. Enterprise-caliber AI strategy, workflow automation, AI agents, and digital transformation — without the enterprise price tag or the hype. Based in Charlotte, NC, serving clients nationwide.",
+  },
+  {
+    name: "keywords",
+    content:
+      "AI consulting, workflow automation, AI agents, digital transformation, business automation, Charlotte AI consulting, SMB AI solutions, AI strategy, AI implementation",
+  },
+  // OG tags
+  { property: "og:title", content: "Poole Intelligence Group — Building Smarter Businesses with AI" },
+  {
+    property: "og:description",
+    content:
+      "Enterprise-caliber AI strategy and implementation for SMBs. Based in Charlotte, NC. Serving clients nationwide.",
+  },
+  { property: "og:type", content: "website" },
+  { property: "og:url", content: "https://pooleintelligencegroup.com" },
+  { name: "google-analytics", content: "G-7QW6N659QN" },
+];
+
+const headLinks = [
+  { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
+  {
+    rel: "preconnect",
+    href: "https://fonts.googleapis.com",
+  },
+  {
+    rel: "preconnect",
+    href: "https://fonts.gstatic.com",
+    crossOrigin: "anonymous",
+  },
+  {
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
+  },
+];
+
+const headScripts = [
+  {
+    type: "application/ld+json",
+    children: JSON.stringify(localBusinessJsonLd),
+  },
+];
+
 export const Route = createRootRoute({
   head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      {
-        title: "Poole Intelligence Group — Building Smarter Businesses with AI",
-      },
-      {
-        name: "description",
-        content:
-          "Poole Intelligence Group helps small and medium-sized businesses build smarter operations with AI. Enterprise-caliber AI strategy, workflow automation, AI agents, and digital transformation — without the enterprise price tag or the hype. Based in Charlotte, NC, serving clients nationwide.",
-      },
-      {
-        name: "keywords",
-        content:
-          "AI consulting, workflow automation, AI agents, digital transformation, business automation, Charlotte AI consulting, SMB AI solutions, AI strategy, AI implementation",
-      },
-      // OG tags
-      { property: "og:title", content: "Poole Intelligence Group — Building Smarter Businesses with AI" },
-      {
-        property: "og:description",
-        content:
-          "Enterprise-caliber AI strategy and implementation for SMBs. Based in Charlotte, NC. Serving clients nationwide.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://pooleintelligencegroup.com" },
-      { name: "google-analytics", content: "G-7QW6N659QN" },
-    ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
-      {
-        rel: "preconnect",
-        href: "https://fonts.googleapis.com",
-      },
-      {
-        rel: "preconnect",
-        href: "https://fonts.gstatic.com",
-        crossOrigin: "anonymous",
-      },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
-      },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify(localBusinessJsonLd),
-      },
-    ],
+    meta: headMeta,
+    links: headLinks,
+    scripts: headScripts,
   }),
   notFoundComponent: () => (
     <div className="flex min-h-dvh flex-col items-center justify-center gap-4 px-6 text-center">
