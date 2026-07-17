@@ -67,7 +67,7 @@ const headMeta = [
   },
   { property: "og:type", content: "website" },
   { property: "og:url", content: "https://pooleintelligencegroup.com" },
-  { name: "google-analytics", content: "G-7QW6N659QN" },
+  // { name: "google-analytics", content: "G-7QW6N659QN" },
 ];
 
 const headLinks = [
@@ -132,18 +132,6 @@ function RootDocument({ children }: { children: ReactNode }) {
     <html lang="en" className="scroll-smooth">
       <head>
         <HeadContent />
-        {/* Google Analytics 4 */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QW6N659QN" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-7QW6N659QN');
-            `,
-          }}
-        />
       </head>
       <body className="min-h-dvh bg-white font-sans text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-100">
         <Nav />

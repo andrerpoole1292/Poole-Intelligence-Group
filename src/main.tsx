@@ -13,8 +13,6 @@ const router = getRouter();
 const rootElement = document.getElementById("root")!;
 if (!rootElement.hasChildNodes()) {
   ReactDOM.createRoot(rootElement).render(
-    <React.StrictMode>
-      <RouterProvider router={router} />
-    </React.StrictMode>
+    <RouterProvider router={router} />
   );
 }
