@@ -94,12 +94,10 @@ const headScripts = [
   },
 ];
 
+const headData = { meta: headMeta, links: headLinks, scripts: headScripts };
+
 export const Route = createRootRoute({
-  head: () => ({
-    meta: headMeta,
-    links: headLinks,
-    scripts: headScripts,
-  }),
+  head: () => headData,
   notFoundComponent: () => (
     <div className="flex min-h-dvh flex-col items-center justify-center gap-4 px-6 text-center">
       <h1 className="text-6xl font-bold text-[#1B2A4A] dark:text-[#6B8DBF]">

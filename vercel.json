@@ -4,6 +4,7 @@
   "outputDirectory": "dist",
   "installCommand": "bun install",
   "rewrites": [
+    { "source": "/contact", "destination": "/contact-static.html" },
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
