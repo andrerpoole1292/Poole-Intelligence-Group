@@ -3,9 +3,29 @@
   "buildCommand": "bun run build",
   "outputDirectory": "dist",
   "installCommand": "bun install",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.pooleintelligencegroup.com" }],
+      "destination": "https://pooleintelligencegroup.com/$1",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; connect-src 'self' https://api.resend.com; font-src 'self' https://fonts.gstatic.com; frame-src 'none'; object-src 'none'"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/contact", "destination": "/contact-static.html" },
     { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/carousels/(.*)", "destination": "/carousels/$1" },
+    { "source": "/((?!carousels/).*)", "destination": "/index.html" }
   ]
 }
