@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useRef, useEffect } from "react";
+import AnimatedDemo from "~/components/AnimatedDemo";
 
 export const Route = createFileRoute("/demo")({
   component: DemoPage,
@@ -358,6 +359,9 @@ function DemoPage() {
 
   return (
     <div className="min-h-dvh bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
+      {/* Animated Before/After AI Demo */}
+      <AnimatedDemo />
+
       {/* Demo Header */}
       <section className="pt-24 pb-4">
         <div className="mx-auto max-w-4xl px-6 text-center">
