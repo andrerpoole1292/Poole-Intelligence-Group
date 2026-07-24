@@ -37,7 +37,11 @@ const localBusinessJsonLd = {
     email: "hello@pooleintelligencegroup.com",
             contactType: "sales",
   },
-  sameAs: ["https://linkedin.com/company/pooleintelligence"],
+  sameAs: [
+    "https://www.linkedin.com/company/poole-intelligence-group",
+    "https://www.instagram.com/pooleintelligencegroup",
+    "https://www.facebook.com/profile.php?id=61592276481874",
+  ],
 };
 
 // Static head meta — extracted to a constant so it doesn't create new
@@ -288,6 +292,7 @@ function Footer() {
               <li><Link to="/assessment" className="hover:text-[#1B2A4A] dark:hover:text-gray-100">AI Readiness Assessment</Link></li>
               <li><Link to="/resources" className="hover:text-[#1B2A4A] dark:hover:text-gray-100">Guides & Tools</Link></li>
               <li><Link to="/services" className="hover:text-[#1B2A4A] dark:hover:text-gray-100">Our Services</Link></li>
+              <li><Link to="/demo" className="hover:text-[#1B2A4A] dark:hover:text-gray-100">AI Demo</Link></li>
             </ul>
           </div>
           <div>
@@ -310,12 +315,32 @@ function Footer() {
               <li>Serving clients nationwide</li>
               <li>
                 <a
-                  href="https://linkedin.com/company/pooleintelligence"
+                  href="https://www.linkedin.com/company/poole-intelligence-group"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#1B2A4A] dark:hover:text-gray-100"
                 >
                   LinkedIn →
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/pooleintelligencegroup"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#1B2A4A] dark:hover:text-gray-100"
+                >
+                  Instagram →
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61592276481874"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#1B2A4A] dark:hover:text-gray-100"
+                >
+                  Facebook →
                 </a>
               </li>
             </ul>
