@@ -26,6 +26,7 @@
     { "source": "/contact", "destination": "/contact-static.html" },
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/carousels/(.*)", "destination": "/carousels/$1" },
-    { "source": "/((?!carousels/).*)", "destination": "/index.html" }
+    { "source": "/assets/(.*)", "destination": "/assets/$1" },
+    { "source": "/((?!carousels/|assets/).*)", "destination": "/index.html" }
   ]
 }
