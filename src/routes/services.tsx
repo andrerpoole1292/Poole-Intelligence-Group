@@ -17,7 +17,7 @@ const services = [
     id: "consulting",
     title: "AI Strategy & Consulting",
     tagline: "From discovery to roadmap to execution",
-    pricing: "From $1,500",
+    pricing: "From $2,500",
     description: "We immerse ourselves in your business — understanding your goals, data landscape, and AI readiness. You get a tailored roadmap with prioritized initiatives, timelines, and ROI projections. Then we help you implement the highest-impact solutions.",
     outcome: "A clear, actionable AI strategy you can execute with confidence.",
     features: [
@@ -32,11 +32,11 @@ const services = [
     id: "training",
     title: "Training & Enablement",
     tagline: "Build AI fluency across your organization",
-    pricing: "From $1,000",
+    pricing: "From $1,500",
     description: "Hands-on workshops, ongoing cohorts, and executive briefings that build real AI skills — not just theory. Your teams learn prompt engineering, workflow automation, and responsible AI use through practical exercises with their own tools.",
     outcome: "Teams that confidently use AI to be more productive every day.",
     features: [
-      "Help your team save 5–10 hours per week on routine tasks",
+      "Help your team save 15–30 hours per month on routine tasks",
       "Reduce time spent on emails, reports, and data entry",
       "Eliminate hours of manual research and document review",
       "Build internal confidence with AI tools your team will actually use",
@@ -47,7 +47,7 @@ const services = [
     id: "managed",
     title: "Managed AI Solutions",
     tagline: "Custom AI agents, deployed and maintained for you",
-    pricing: "Custom Quote",
+    pricing: "From $5,000 setup + custom retainer",
     description: "We build, deploy, and maintain custom AI solutions — chatbots, automation pipelines, and content workflows. No need to hire specialized talent. We handle everything from architecture to ongoing optimization.",
     outcome: "24/7 AI-powered support and automation that works accurately based on your content.",
     features: [
@@ -122,7 +122,7 @@ function Services() {
 
           <div className="mt-8 text-center">
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Need a custom scope? <Link to="/contact" className="font-semibold text-[#1B2A4A] underline dark:text-[#6B8DBF]">Let's talk</Link>.
+              Need a custom scope? <a href="https://calendly.com/hello-pooleintelligencegroup/30min" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#1B2A4A] underline dark:text-[#6B8DBF]">Book a discovery call</a>.
             </p>
           </div>
         </div>
@@ -155,7 +155,7 @@ function Services() {
             />
             <FaqItem
               q="How long does a typical engagement take?"
-              a="Discovery workshops take 1-2 weeks. Strategy roadmaps are delivered in 2-3 weeks. Implementation sprints range from 4-12 weeks depending on complexity. Most clients see their first results within 60 days."
+              a="Discovery workshops take 1-2 weeks. Strategy roadmaps are delivered in 1-6 weeks. Managed AI solutions are deployed in 4-12 weeks depending on complexity. Most clients see their first results within 60 days."
             />
             <FaqItem
               q="What if I need ongoing support after the engagement?"
@@ -179,12 +179,12 @@ function Services() {
             Let's talk about where you are, where you want to be, and how AI can get you there.
           </p>
           <div className="mt-10">
-            <Link
-              to="/contact"
+            <a
+              href="https://calendly.com/hello-pooleintelligencegroup/30min" target="_blank" rel="noopener noreferrer"
               className="inline-block rounded-xl bg-white px-10 py-4 text-sm font-semibold text-[#1B2A4A] shadow-lg transition hover:bg-blue-50"
             >
               Schedule a 30-Minute Discovery Call
-            </Link>
+            </a>
           </div>
         </div>
       </section>

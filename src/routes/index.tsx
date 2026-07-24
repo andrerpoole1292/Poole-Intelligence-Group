@@ -31,12 +31,14 @@ function Home() {
             technical team or a six-figure budget.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <Link
-              to="/contact"
+            <a
+              href="https://calendly.com/hello-pooleintelligencegroup/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-xl bg-[#1B2A4A] px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-[#1B2A4A]/25 transition hover:bg-[#2A3A5A] hover:shadow-[#1B2A4A]/40"
             >
-              See What AI Could Save Your Team →
-            </Link>
+              Book a Free Discovery Call
+            </a>
             <Link
               to="/how-it-works"
               className="rounded-xl border border-[#C0C0C0] bg-white px-8 py-4 text-sm font-semibold text-[#1B2A4A] transition hover:bg-[#F5F7FA] dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:hover:bg-gray-800"
@@ -81,12 +83,12 @@ function Home() {
           </div>
           <p className="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
             We'll show you exactly what AI could save your team —{" "}
-            <Link
-              to="/contact"
+            <a
+              href="https://calendly.com/hello-pooleintelligencegroup/30min" target="_blank" rel="noopener noreferrer"
               className="font-semibold text-[#1B2A4A] underline dark:text-[#6B8DBF]"
             >
-              in a 30-minute discovery call
-            </Link>
+              book a free discovery call
+            </a>
             . No pitch. Just math.
           </p>
         </div>
@@ -212,7 +214,7 @@ function Home() {
               icon="⚡"
               outcome="A comprehensive digital strategy with AI-powered execution — from content workflows to marketing automation to full-stack implementation."
               points={[
-                "5–10× faster content production, consistent quality",
+                "3–5× faster content production, consistent quality",
                 "Marketing automation that actually converts",
                 "Systems that work together, not against each other",
                 "A partner who builds what they design",
@@ -270,7 +272,7 @@ function Home() {
             />
             <ImpactCard
               icon="💰"
-              metric="5–10×"
+              metric="3–5×"
               label="Content output"
               sub="Same team — AI-powered workflows eliminate bottlenecks"
             />
@@ -283,7 +285,7 @@ function Home() {
                 Cost-Benefit Summary
               </h3>
               <p className="mb-6 text-center text-sm text-gray-500">
-                Most first engagements range from <strong>$5,000 to $25,000</strong>
+                Most first engagements range from <strong>$2,500 to $15,000+</strong>
               </p>
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
@@ -449,12 +451,14 @@ function Home() {
             no follow-up spam — just an honest conversation about what's possible.
           </p>
           <div className="mt-10">
-            <Link
-              to="/contact"
+            <a
+              href="https://calendly.com/hello-pooleintelligencegroup/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block rounded-xl bg-[#1B2A4A] px-8 py-4 text-sm font-semibold text-white shadow-lg transition hover:bg-[#2A3A5A]"
             >
               Book Your Free Discovery Call
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -520,12 +524,12 @@ function Home() {
           </div>
           <p className="mt-4 text-sm text-gray-400">
             Or{" "}
-            <Link
+            <a
               to="/services"
               className="font-semibold text-[#6B8DBF] underline"
             >
               explore our services first
-            </Link>
+            </a>
           </p>
         </div>
       </section>
