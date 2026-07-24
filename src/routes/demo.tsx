@@ -28,15 +28,15 @@ interface ScriptNode {
 const script: Record<string, ScriptNode> = {
   welcome: {
     id: "welcome",
-    bot: "👋 Hi there! I'm the **PIG Assistant** — a demo of what Poole Intelligence Group builds for clients.\n\nI'm here to show you how an AI-powered chatbot can help your business. Let's chat a bit — I'll ask a few questions and point you to resources that might help.\n\n> ⚠️ This is a demo AI assistant. Responses are pre-scripted to demonstrate capabilities.",
+    bot: "👋 Hi there! I'm the **Poole Intelligence Group Assistant** — a demo of what Poole Intelligence Group builds for clients.\n\nI'm here to show you how an AI-powered chatbot can help your business. Let's chat a bit — I'll ask a few questions and point you to resources that might help.\n\n> ⚠️ This is a demo AI assistant. Responses are pre-scripted to demonstrate capabilities.",
     options: [
       { label: "👍 Sounds good, let's go!", next: "challenge" },
-      { label: "Tell me about PIG first", next: "about_pig" },
+      { label: "Tell me about Poole Intelligence Group first", next: "about_pig" },
     ],
   },
   about_pig: {
     id: "about_pig",
-    bot: "**Poole Intelligence Group (PIG)** helps SMBs build smarter operations with AI. We deliver:\n\n• **AI Strategy & Consulting** — Roadmaps, assessments, implementation plans\n• **Workflow Automation** — Automate repetitive tasks and processes\n• **AI Agents & Chatbots** — Custom AI assistants like this one (but powered by your data)\n• **Digital Strategy** — Transform your digital operations\n• **AI Implementation** — We build and deploy, not just advise\n\nWe're vendor-agnostic, practical, and focused on real business outcomes — not hype.\n\nWant to see what we could build for you?",
+    bot: "**Poole Intelligence Group** helps SMBs build smarter operations with AI. We deliver:\n\n• **AI Strategy & Consulting** — Roadmaps, assessments, implementation plans\n• **Workflow Automation** — Automate repetitive tasks and processes\n• **AI Agents & Chatbots** — Custom AI assistants like this one (but powered by your data)\n• **Digital Strategy** — Transform your digital operations\n• **AI Implementation** — We build and deploy, not just advise\n\nWe're vendor-agnostic, practical, and focused on real business outcomes — not hype.\n\nWant to see what we could build for you?",
     options: [
       { label: "Yes! Let's explore", next: "challenge" },
       { label: "I'm just browsing", next: "browsing" },
@@ -94,7 +94,7 @@ const script: Record<string, ScriptNode> = {
   },
   chatbot_arch: {
     id: "chatbot_arch",
-    bot: "We use a **RAG (Retrieval-Augmented Generation)** pattern:\n\n1. Your content (docs, FAQs, wikis) is indexed into a vector database\n2. When a user asks a question, we retrieve the most relevant information\n3. An LLM generates a response grounded in your content\n\nThis means accurate, up-to-date answers with full citations. No hallucination, no stale responses.\n\n**Tech stack options:** OpenAI GPT-4o, Anthropic Claude, LangChain, Pinecone/Weaviate, deployed in your cloud or ours.\n\nSetup from $8K, monthly retainer from $1.5K.",
+    bot: "We use a **RAG (Retrieval-Augmented Generation)** pattern:\n\n1. Your content (docs, FAQs, wikis) is indexed into a vector database\n2. When a user asks a question, we retrieve the most relevant information\n3. An LLM generates a response grounded in your content\n\nThis means accurate, up-to-date answers with full citations. No hallucination, no stale responses.\n\n**Tech stack options:** OpenAI GPT-4o, Anthropic Claude, LangChain, Pinecone/Weaviate, deployed in your cloud or ours.\n\nSetup from $5K, monthly retainer from $1.5K.",
     options: [
       { label: "I'm interested — capture my info", next: "lead_capture" },
     ],
@@ -109,7 +109,7 @@ const script: Record<string, ScriptNode> = {
   },
   pricing_info: {
     id: "pricing_info",
-    bot: "Our pricing is transparent and right-sized for SMBs:\n\n**Consulting:**\n• Discovery Workshop: From $8K\n• Full Strategy + Roadmap: $15K–$30K\n• Implementation: $25K–$75K\n\n**Managed Solutions:**\n• Custom Chatbot: $8K setup + $1.5K/mo\n• Automation Pipeline: $12K setup + $2K/mo\n• Content Workflow: $10K setup + $1.8K/mo\n\n**Training:** Workshops from $3K, cohorts from $1,500/seat.\n\nAll engagements start with a free 30-min discovery call. Ready to take the next step?",
+    bot: "Our pricing is transparent and right-sized for SMBs:\n\n**Consulting:**\n• Discovery Workshop: From $2,500\n• Strategy Roadmap: $5,000\n• Implementation: From $15,000\n\n**Managed Solutions:**\n• Custom Chatbot: $5K setup + 1st month included\n• Automation Pipeline: Custom quote\n• Content Workflow: Custom quote\n\n**Training:** Workshops from $1,500, Executive Briefings from $2,500.\n\nAll engagements start with a free 30-min discovery call. Ready to take the next step?",
     options: [
       { label: "Yes, let's talk!", next: "lead_capture" },
     ],
@@ -387,7 +387,7 @@ function DemoPage() {
                 P
               </div>
               <div className="flex-1">
-                <div className="text-sm font-semibold">PIG Assistant</div>
+                <div className="text-sm font-semibold">Poole Intelligence Group Assistant</div>
                 <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
                   <span className="flex h-2 w-2 rounded-full bg-green-500" />
                   Demo — Pre-scripted responses
