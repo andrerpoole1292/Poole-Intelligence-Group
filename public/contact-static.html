@@ -227,10 +227,10 @@
             <h1>Let's Start a <span>Conversation</span></h1>
             <p>Tell us about your AI goals and challenges.</p>
         </div>
-        <!-- Calendly Booking -->
+        <!-- Calendly Link -->
         <div style="max-width:600px;margin:0 auto 32px;text-align:center;">
-            <p style="color:#C0C0C0;font-size:14px;font-weight:500;margin-bottom:16px;">Book a free 30-minute discovery call</p>
-            <div class="calendly-inline-widget" data-url="https://calendly.com/hello-pooleintelligencegroup/30min?hide_gdpr_banner=1&primary_color=1b2a4a" style="min-width:320px;height:630px;border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.25);"></div>
+            <a href="https://calendly.com/hello-pooleintelligencegroup/30min" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#1B2A4A;color:#fff;padding:16px 40px;border-radius:12px;text-decoration:none;font-size:15px;font-weight:600;box-shadow:0 4px 16px rgba(27,42,74,0.4);" onmouseover="this.style.background='#2A3A5A'" onmouseout="this.style.background='#1B2A4A'">📅 Schedule a Discovery Call →</a>
+            <p style="color:#9BAABF;font-size:13px;margin-top:16px;">— or fill out the form below —</p>
         </div>
         <div class="form-card">
             <form id="contact-form" onsubmit="event.preventDefault();var f=this;var d=new FormData(f);var x=new XMLHttpRequest();x.open('POST','/api/leads',true);x.setRequestHeader('Content-Type','application/json;charset=UTF-8');x.setRequestHeader('Accept','application/json');x.onload=function(){if(x.status===200||x.status===201){alert('Thank you! We\'ll be in touch within 1 business day.');f.reset();}else{alert('Something went wrong. Please email us at hello@pooleintelligencegroup.com.');}};x.onerror=function(){alert('Network error. Please email us at hello@pooleintelligencegroup.com.');};x.send(JSON.stringify({name:f.name.value,email:f.email.value,company:f.company.value,service:f.service.value,message:f.message.value}));" action="/api/leads" method="POST">
