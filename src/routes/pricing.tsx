@@ -5,7 +5,7 @@ export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
       { title: "Pricing & Engagement Models — Poole Intelligence Group" },
-      { name: "description", content: "Transparent pricing for AI consulting engagements. From $8K strategy to $3K training and $8K setup + $1.5K/mo managed solutions. Founding Client Program available." },
+      { name: "description", content: "Transparent pricing for AI consulting. Discovery Workshop from $2,500, Strategy Roadmap $5,000, Implementation from $15,000. Managed solutions from $5,000 setup. Early Adopter pricing available." },
     ],
   }),
 });
@@ -13,25 +13,26 @@ export const Route = createFileRoute("/pricing")({
 const pricingTiers = [
   {
     name: "AI Strategy & Consulting",
-    price: "From $8,000",
+    price: "From $2,500",
     timeline: "1-6 weeks",
     bestFor: "Businesses exploring AI or needing a strategic roadmap",
     includes: [
-      "AI Discovery Workshop",
-      "Strategy Roadmap with milestones",
-      "Implementation project support",
+      "AI Discovery Workshop ($2,500)",
+      "AI Strategy Roadmap ($5,000)",
+      "AI Implementation Project (from $15,000)",
+      "Executive AI Briefing ($2,500 — standalone add-on)",
       "ROI measurement framework",
       "Weekly check-ins during active phases",
     ],
   },
   {
     name: "Training & Enablement",
-    price: "From $3,000",
+    price: "From $1,500",
     timeline: "1 day - 6 weeks",
     bestFor: "Teams building AI skills across the organization",
     includes: [
-      "Group workshops (virtual or on-site)",
-      "Executive AI briefings",
+      "Group AI Workshop (from $1,500 per session)",
+      "Executive AI Briefing ($2,500)",
       "Custom learning paths by role",
       "Hands-on labs with your tools",
       "Ongoing cohort programs available",
@@ -39,11 +40,11 @@ const pricingTiers = [
   },
   {
     name: "Managed AI Solutions",
-    price: "From $8,000 setup",
-    timeline: "4-12 weeks initial + $1.5K/mo ongoing",
+    price: "From $5,000 setup",
+    timeline: "4-12 weeks initial + custom monthly retainer",
     bestFor: "Businesses wanting custom AI agents and automation",
     includes: [
-      "Custom AI agents & chatbots",
+      "Custom AI Chatbot (from $5,000 setup + 1st month)",
       "Workflow automation pipelines",
       "Content generation workflows",
       "System integrations",
@@ -95,18 +96,18 @@ function Pricing() {
           ))}
         </div>
 
-        {/* Founding Client Program */}
+        {/* Early Adopter Program */}
         <div className="mt-16 rounded-2xl border-2 border-[#C0C0C0] bg-[#F5F7FA] p-10 text-center dark:border-gray-700 dark:bg-gray-900">
           <span className="mb-3 inline-block rounded-full bg-[#1B2A4A] px-4 py-1 text-xs font-semibold text-white">Limited Time</span>
-          <h2 className="text-2xl font-bold text-[#1B2A4A] dark:text-gray-100">Founding Client Program</h2>
+          <h2 className="text-2xl font-bold text-[#1B2A4A] dark:text-gray-100">Early Adopter Program</h2>
           <p className="mt-3 mx-auto max-w-2xl text-gray-600 dark:text-gray-400">
-            We're accepting a limited number of founding clients at reduced rates. You get hands-on delivery from the founder, discounted pricing, and the opportunity to shape our service offerings. Limited to 10 founding clients.
+            We're accepting a limited number of early adopter clients at reduced rates. You get hands-on delivery from the founder, discounted pricing, and the opportunity to shape our service offerings. Limited to 5 founding clients.
           </p>
           <Link
             to="/contact"
             className="mt-6 inline-block rounded-xl bg-[#1B2A4A] px-8 py-4 text-sm font-semibold text-white shadow-lg transition hover:bg-[#2A3A5A]"
           >
-            Apply for Founding Client Pricing
+            Apply for Early Adopter Pricing
           </Link>
         </div>
 
