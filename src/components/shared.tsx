@@ -9,12 +9,14 @@ export function StickyCtaBar() {
           Ready to build smarter operations?
         </p>
         <div className="flex w-full gap-3 sm:w-auto">
-          <Link
-            to="/contact"
+          <a
+            href="https://calendly.com/hello-pooleintelligencegroup/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex-1 rounded-lg bg-[#1B2A4A] px-5 py-2.5 text-center text-xs font-semibold text-white transition hover:bg-[#2A3A5A] sm:flex-none"
           >
             Schedule a Free Discovery Call
-          </Link>
+          </a>
           <Link
             to="/services"
             className="flex-1 rounded-lg border border-[#C0C0C0] px-5 py-2.5 text-center text-xs font-semibold text-[#1B2A4A] transition hover:bg-[#F5F7FA] dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 sm:flex-none"
@@ -45,7 +47,7 @@ export function FloatingCta() {
 }
 
 /* ─── "Why Poole Intelligence Group" Section ─── */
-export function WhyPigSection() {
+export function WhyChooseUsSection() {
   return (
     <section className="bg-[#F5F7FA] py-24 dark:bg-gray-900">
       <div className="mx-auto max-w-6xl px-6">
@@ -70,7 +72,7 @@ export function WhyPigSection() {
           <WhyCard
             number="02"
             title="Strategy + Execution"
-            description="We don't just advise and leave. We build, deploy, and iterate alongside your team until the solution is working."
+            description="Strategy without execution is just a deck. Execution without strategy is just busywork. We connect both — from diagnostic and roadmap through deployment and iteration — so every build decision ties back to a business goal."
           />
           <WhyCard
             number="03"

@@ -129,7 +129,7 @@ function About() {
             />
             <ValueCard
               title="Hands-On Delivery"
-              description="We don't just advise and leave. We build, deploy, and iterate alongside your team until the solution is working."
+              description="We stay in the work with you — building, deploying, and refining until the solution is actually delivering results, not just a final report."
             />
             <ValueCard
               title="Long-Term Partnership"

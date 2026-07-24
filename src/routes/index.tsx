@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { WhyPigSection, FloatingCta } from "~/components/shared";
+import { WhyChooseUsSection, FloatingCta } from "~/components/shared";
 import AnimatedWorkflow from "~/components/AnimatedWorkflow";
 
 export const Route = createFileRoute("/")({
@@ -434,7 +434,7 @@ function Home() {
       </section>
 
       {/* ─── Why Choose Us ─── */}
-      <WhyPigSection />
+      <WhyChooseUsSection />
 
       {/* ─── No-Pressure Guarantee ─── */}
       <section className="bg-white py-20 dark:bg-gray-950">
