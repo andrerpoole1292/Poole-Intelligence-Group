@@ -227,8 +227,13 @@
             <h1>Let's Start a <span>Conversation</span></h1>
             <p>Tell us about your AI goals and challenges.</p>
         </div>
+        <!-- Calendly Booking -->
+        <div style="max-width:600px;margin:0 auto 32px;text-align:center;">
+            <p style="color:#C0C0C0;font-size:14px;font-weight:500;margin-bottom:16px;">Book a free 30-minute discovery call</p>
+            <div class="calendly-inline-widget" data-url="https://calendly.com/hello-pooleintelligencegroup/30min?hide_gdpr_banner=1&primary_color=1b2a4a" style="min-width:320px;height:630px;border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.25);"></div>
+        </div>
         <div class="form-card">
-            <form id="contact-form" onsubmit="event.preventDefault();var f=this;var d=new FormData(f);var x=new XMLHttpRequest();x.open('POST','/api/leads',true);x.setRequestHeader('Content-Type','application/json;charset=UTF-8');x.setRequestHeader('Accept','application/json');x.onload=function(){if(x.status===200||x.status===201){var r=JSON.parse(x.responseText||'{}');document.getElementById('form-success').style.display='block';document.getElementById('form-success').innerHTML=r.message||'Thank you! We\'ll be in touch within 1 business day.';f.reset();f.style.display='none';}else{alert('Something went wrong. Please email us at hello@pooleintelligencegroup.com.');}};x.onerror=function(){alert('Network error. Please email us at hello@pooleintelligencegroup.com.');};x.send(JSON.stringify({name:f.name.value,email:f.email.value,company:f.company.value,service:f.service.value,message:f.message.value}));" action="/api/leads" method="POST">
+            <form id="contact-form" onsubmit="event.preventDefault();var f=this;var d=new FormData(f);var x=new XMLHttpRequest();x.open('POST','/api/leads',true);x.setRequestHeader('Content-Type','application/json;charset=UTF-8');x.setRequestHeader('Accept','application/json');x.onload=function(){if(x.status===200||x.status===201){alert('Thank you! We\'ll be in touch within 1 business day.');f.reset();}else{alert('Something went wrong. Please email us at hello@pooleintelligencegroup.com.');}};x.onerror=function(){alert('Network error. Please email us at hello@pooleintelligencegroup.com.');};x.send(JSON.stringify({name:f.name.value,email:f.email.value,company:f.company.value,service:f.service.value,message:f.message.value}));" action="/api/leads" method="POST">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="name">Full name <span class="required">*</span></label>
@@ -262,19 +267,6 @@
                 <button type="submit">Send Message</button>
                 <p class="footer-text">We respect your privacy. No spam, no sharing your data.</p>
             </form>
-            <div id="form-success" style="display:none;text-align:center;padding:32px 24px;background:#e8f5e9;border-radius:8px;color:#2e7d32;font-weight:500;margin-top:16px;">
-              <div style="font-size:18px;margin-bottom:8px;">✅ Thanks for reaching out!</div>
-              <div style="font-size:14px;font-weight:400;margin-bottom:20px;color:#555;">We've received your inquiry and will respond within 1 business day.</div>
-              <div style="background:white;border:1px solid #c8e6c9;border-radius:12px;padding:20px;max-width:380px;margin:0 auto;">
-                <div style="font-size:14px;font-weight:600;color:#1B2A4A;margin-bottom:4px;">⚡ Want faster? Book a call directly.</div>
-                <div style="font-size:12px;color:#888;margin-bottom:12px;">Free 30-minute Discovery Call — no pressure, just honest advice.</div>
-                <a href="https://calendly.com/hello-pooleintelligencegroup/30min" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#1B2A4A;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;">Schedule a Free Discovery Call</a>
-              </div>
-            </div>
-        </div>
-        <div style="text-align:center;margin-top:24px;">
-            <p style="color:#C0C0C0;font-size:14px;font-weight:500;margin-bottom:16px;">Prefer to book directly?</p>
-            <div class="calendly-inline-widget" data-url="https://calendly.com/hello-pooleintelligencegroup/30min?hide_gdpr_banner=1&primary_color=1b2a4a" style="min-width:320px;height:630px;border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.25);"></div>
         </div>
     </div>
 
